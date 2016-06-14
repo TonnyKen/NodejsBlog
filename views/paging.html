@@ -1,0 +1,10 @@
+<br />
+<div>
+  <% if (!isFirstPage) { %>
+    <span class="prepage"><a title="prev" href="?p=<%= page-1 %>">prev</a></span>
+  <% } %>
+
+  <% if (!isLastPage) { %>
+    <span class="nextpage"><a title="next" href="?p=<%= page+1 %>">next</a></span>
+  <% } %>
+</div>

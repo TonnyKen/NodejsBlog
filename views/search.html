@@ -1,0 +1,8 @@
+<%- include header.html %>
+<ul class="archive">
+<% blogs.forEach(function (blog, index) { %>
+    <li><p style="display:inline"><a href="/u/<%= blog.name %>/<%= blog.time %>/<%= blog.title %>"><%= blog.title %></a> <p style="float:right">author:<%= blog.name %>  time:<%= blog.time %></p></p></li>
+    <br />
+<% }) %>
+</ul>
+<%- include footer.html %>

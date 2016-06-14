@@ -1,0 +1,62 @@
+<%- include header.html %>
+<% blogs.forEach(function (blog, index) { %>
+<p>
+  <% if (user && (user.name == blog.name)) { %>
+  <span><a class="edit" id = "edit" href="#">edit</a></span>
+  <span><a class="edit" id = "delete" href="/remove/<%= blog.name %>/<%= blog.time %>/<%= blog.title %>">delete</a></span>
+  <% } %>
+</p>
+<p class="info" id = "info">
+    author: <a id="blog_author" href="/u/<%= blog.name %>"><%= blog.name %></a> |
+    date: <a id="blog_time" href="/u/<%= blog.name %>"><%= blog.time %></a>
+</p>
+
+<!-- owner edit own blog -->
+<div id="edit_form">
+  <form method="post">
+    <script type="text/plain" name = "content" id="myEditor" style="auto;height:300px;">I dont wanna pay time to change this package to English. Just have fun</script>
+    <input type="submit" value="submit" id = "edit_button"/>
+  </form>
+</div>
+
+<div id = "content"><%- blog.content %></div>
+<p class="info">All read: <%= blog.pv %> | comments: <%= blog.comments.length %></p>
+<div id = "comment_title"><%= blog.title %></div>
+<br /><br /><br />
+
+<!-- show comment -->
+<% if (user && (user.name != blog.name)) { %>
+  <button id="showComment">Comment</button>
+<% } %>
+<br /><br /><br />
+<div id = "blog_comment">
+  <script type="text/plain" name = "content" id="commentEditor" style="auto;height:300px;">Add your comments here</script>
+  <button id="commentSubmit">Submit</button>
+</div>
+
+<br />
+
+<h2>All reply</h2>
+<% blog.comments.forEach(function (comment, index) { %>
+  <hr />
+  <img src="<%= comment.head %>" class="l_head" />
+  <%- comment.commentContent %>
+  <span class="info"> writer:<%= comment.commentUser %>  time: <%= comment.commentTime %></span></p>
+<% }) %>
+
+<div class="jogger">
+<span class="disabled">&lt; </span>
+<span class="current">1</span>
+<a href="#?page=2">2</a>
+<a href="#?page=3">3</a>
+<a href="#?page=4">4</a>
+<a href="#?page=5">5</a>
+<a href="#?page=6">6</a>
+<a href="#?page=7">7</a>...
+<a href="#?page=199">199</a>
+<a href="#?page=200">200</a>
+<a href="#?page=2">
+&gt; </a></div>
+
+<% }) %>
+<%- include footer.html %>
